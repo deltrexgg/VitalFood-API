@@ -32,7 +32,7 @@ app.get('/api', (req, res) => {
           res.send("Internal Error")
         })
         .finally(() => {
-          // Close the Mongoose connection
+          // Close the Mongoose connection 111
           mongoose.connection.close().then(() => console.log('Connection closed'));
         });
     })
