@@ -19,7 +19,7 @@ app.get('/api', (req, res) => {
   const data = req.query.condition;
 
   // Connect to MongoDB using Mongoose
-  mongoose.connect('mongodb+srv://vitalfood:SLvHUhOXMpan1lRE@deltrexgg.kk2a2st.mongodb.net/vital')
+  mongoose.connect(process.env.DB_CONNECT)
     .then(() => {
       console.log('Connected to MongoDB');
 
