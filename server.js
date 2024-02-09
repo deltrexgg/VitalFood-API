@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
+app.set('view engine', 'ejs')
 
 // Define a Mongoose schema
 const userSchema = new mongoose.Schema({
@@ -40,6 +41,10 @@ app.get('/api', (req, res) => {
       console.error('Error connecting to MongoDB:', error);
     });
 });
+
+app.get('/',(req,res) =>{
+  res.render('index.ejs')
+})
 
 app.listen(5000, () => {
   console.log("Server is live");
