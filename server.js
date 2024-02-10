@@ -4,37 +4,39 @@ const app = express();
 app.set('view engine', 'ejs')
 
 
-// Define a Mongoose schema
+// Mongoose schema
 const userSchema = new mongoose.Schema({
   condition: String,
   description: String,
   recommendedfood: [String],
   avoidfood: [String],
   exercise: [String]
-  // other fields in your schema
 });
 
-// Define a Mongoose model based on the schema
+// Mongoose model based on the schema
 const User = mongoose.model("User", userSchema);
+
+app.get('/',(req,res) =>{
+  res.render('index.ejs')
+})
 
 app.get('/api', (req, res) => {
   const data = req.query.condition;
 
-  // Connect to MongoDB using Mongoose
+  // Mongoose connection
   mongoose.connect(process.env.DB_CONNECT)
     .then(() => {
       console.log('Connected to MongoDB');
 
-      // Retrieve data using Mongoose queries
+      // Return data
       User.find({ condition: data })
         .then(data => {
           res.json(data);
         })
         .catch(error => {
-          res.send("Internal Error")
+          res.send("Internal Error - "+error)
         })
         .finally(() => {
-          // Close the Mongoose connection 111
           mongoose.connection.close().then(() => console.log('Connection closed'));
         });
     })
@@ -43,8 +45,24 @@ app.get('/api', (req, res) => {
     });
 });
 
-app.get('/',(req,res) =>{
-  res.render('index.ejs')
+app.get('/condition-list',(req,res) => {
+   mongoose.connect('mongodb+srv://vitalfood:SLvHUhOXMpan1lRE@deltrexgg.kk2a2st.mongodb.net/vital')
+   .then(()=>{
+    console.log("Connected")
+
+    User.find({},{'condition':1,'_id':0})
+    .then(data =>{
+      res.json(data);
+    })
+    .catch(error =>{
+      console.log(error)
+    }).finally(() =>{
+      mongoose.connection.close().then(() => console.log('Connection closed'));
+    });
+   })
+   .catch(error => {
+    console.error('Error connecting to MongoDB:', error);
+  });
 })
 
 app.listen(5000, () => {
