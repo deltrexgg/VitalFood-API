@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 app.set('view engine', 'ejs')
 
+
 // Define a Mongoose schema
 const userSchema = new mongoose.Schema({
   condition: String,
