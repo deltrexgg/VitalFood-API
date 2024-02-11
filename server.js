@@ -46,13 +46,14 @@ app.get('/api', (req, res) => {
 });
 
 app.get('/condition-list',(req,res) => {
-   mongoose.connect('mongodb+srv://vitalfood:SLvHUhOXMpan1lRE@deltrexgg.kk2a2st.mongodb.net/vital')
+   mongoose.connect(process.env.DB_CONNECT)
    .then(()=>{
     console.log("Connected")
 
     User.find({},{'condition':1,'_id':0})
     .then(data =>{
-      res.json(data);
+      const conditions = data.map(item => item.condition);
+      res.json(conditions);
     })
     .catch(error =>{
       console.log(error)

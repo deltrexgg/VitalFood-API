@@ -38,13 +38,58 @@
             background-image: url('https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2021/12/vegetables_diabetes_market_header-1024x575.jpg?w=1155&h=1528'); 
          
         }
+        .working-title{
+            display: grid;
+            justify-content: center;
+            border-radius: 15px;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf09Y9PUZ8dYKkoTaiNXX5e79bhPtMOO3cTZEZZcXwTCTINapkclY8ONK-LZ2R1FOVAtA&usqp=CAU'); 
+         
+        }
         h2{
             font-family: Arial, Helvetica, sans-serif;
             border-radius: 15px;
             background-color: #f0f0f0; 
             padding: 10px; 
         }
-
+        h3{
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(0, 0, 0);
+            text-decoration: underline;
+        }
+        h4{
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(0, 0, 0);
+        }
+        .api-box{
+            background-color: black;
+            color: #f0f0f0;
+            padding: 1%;
+           width:fit-content;
+        }
+        .bottom-box{
+            width: 100%;
+            height: 100px;
+            background-color: #83EDA1;
+            padding-left: 10%;
+            padding-top: 1%;
+        }
+        .btn{
+            position: relative;
+            width: 120px;
+            height: 40px;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            color: white;
+            flex-direction: column;
+            justify-content: center;
+            border: none;
+            padding: 12px;
+            gap: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    
     </style>
 </head>
 <body>
@@ -56,13 +101,61 @@
         <div class="about-box">
          <div class="about-title">
             <h2>About</h2>
-        
     </div>
             <p>
                 VitalFood API is an open-source RESTful service that not only provides information on existing health conditions, food recommendations and food to avoid but also allows users to contribute by adding new health conditions and related data. This collaborative approach enables community members to expand the database, ensuring that the API remains comprehensive and up-to-date with the latest health information. By fostering a community-driven environment, VitalFood API empowers users to actively participate in improving health awareness and promoting better nutrition practices worldwide.
             </p>
         </div>
+        <br>
+        <div class="about-box">
+            <div class="working-title">
+                <h2>Working</h2>
+            </div>
+            <h3>Retrieve Information for a Specific Health Condition</h3>
+            <h4>Endpoint</h4>
+            <p class="api-box">GET /api?condition={conditionname}</p>
+               
+               <h4>Example</h4>
+               <p class="api-box">GET /api?condition=High%20Blood%20Pressure</p>
+               
+               <h4>Response</h4>
+               <p class="api-box">
+                {
+                    "condition": "High Blood Pressure",<br>
+                    "description": "High blood pressure, or hypertension, is a condition where the force of the blood against the artery walls is consistently too high...",<br>
+                    "recommendedfood":<br>
+                     ["Leafy Greens", "Berries", "Oats", "Bananas", "Fatty Fish (Salmon, Mackerel)", "Beets", "Garlic", "Nuts and Seeds", "Low-Fat Dairy", "Olive Oil"],<br>
+                    "avoidfood": <br>
+                    ["Processed Foods", "Canned Soups", "Salty Snacks", "Pickles", "Caffeine", "Excessive Alcohol", "Red Meat", "Sugary Drinks"],
+                    "exercise":<br>
+                     ["Cardiovascular Exercises (Walking, Jogging, Cycling)", "Strength Training", "Yoga", "Deep Breathing Exercises", "Moderate Physical Activity", "Limiting Sedentary Behavior"]
+                  }
+                  
+               </p>
+              
+               <h3>Retrieve List of Health Conditions</h3>
+               <h4>Endpoint</h4>
+               <p class="api-box">GET /condition-list</p>
+                  
+                  <h4>Example</h4>
+                  <p class="api-box">GET /condition-list</p>
+                  
+                  <h4>Response</h4>
+                  <p class="api-box">
+                    ["High Blood Pressure", "Low Blood Pressure", "High Uric Acid", "Low Uric Acid", "Diabetes", "Asthma"]
+                  </p>
+
+        </div>
+        
     </div>
-    <i>under development</i
+<div class="bottom-box">
+    <input class="btn" type="button" value="Github" onclick="github()">   <i>>>>>under development<<<<</i>
+</div>
+   
 </body>
+<script>
+function github(){
+    window.location.href = 'https://github.com/deltrexgg/VitalFood-API';
+}
+</script>
 </html>
